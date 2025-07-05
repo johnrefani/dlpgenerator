@@ -21,8 +21,20 @@
     --tablet-margin: 3.75rem;
     --laptop-margin: 6.25rem;
     --desktop-margin: 7.5rem;
+    
   }
-
+  h1, h2,h3,h4,h5,h6, p, hr, label{
+    color: var(--color-blue-950);
+  }
+  label {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  input,
+  select {
+    @apply px-3 py-2 border border-blue-950/25 rounded-sm 
+      focus:outline-none focus:ring-1 focus:ring-blue-950 cursor-pointer;
+  }
   body {
     font-family: var(--font-montserrat), sans-serif;
     background-color: var(--color-blue-800);

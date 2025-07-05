@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "DLP Generator",
   description: "Generate lesson plans with ease",
   icons: {
-    icon: "/logo.png",
+    icon: "/logo.ico",
   },
 };
 
