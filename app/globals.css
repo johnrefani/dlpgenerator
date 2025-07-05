@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #171717;
+
+    --color-blue-50: #f1f7fe;
+    --color-blue-100: #e3eefb;
+    --color-blue-200: #c0ddf7;
+    --color-blue-300: #89c2f0;
+    --color-blue-400: #4aa3e6;
+    --color-blue-500: #2387d4;
+    --color-blue-600: #156ab4;
+    --color-blue-700: #145da0;
+    --color-blue-800: #134879;
+    --color-blue-900: #153d65;
+    --color-blue-950: #0e2743;
+
+     /* Spacing */
+    --mobile-margin: 1rem;
+    --tablet-margin: 3.75rem;
+    --laptop-margin: 6.25rem;
+    --desktop-margin: 7.5rem;
+  }
+
+  body {
+    font-family: var(--font-montserrat), sans-serif;
+    background-color: var(--color-blue-800);
+    color: var(--foreground);
+  }
+
+  /* Blue Text Utilities */
+  .text-blue-50 {
+    color: var(--color-blue-50);
+  }
+  .text-blue-100 {
+    color: var(--color-blue-100);
+  }
+  .text-blue-200 {
+    color: var(--color-blue-200);
+  }
+  .text-blue-300 {
+    color: var(--color-blue-300);
+  }
+  .text-blue-400 {
+    color: var(--color-blue-400);
+  }
+  .text-blue-500 {
+    color: var(--color-blue-500);
+  }
+  .text-blue-600 {
+    color: var(--color-blue-600);
+  }
+  .text-blue-700 {
+    color: var(--color-blue-700);
+  }
+  .text-blue-800 {
+    color: var(--color-blue-800);
+  }
+  .text-blue-900 {
+    color: var(--color-blue-900);
+  }
+  .text-blue-950 {
+    color: var(--color-blue-950);
+  }
+
+  /* Blue Background Utilities */
+  .bg-blue-50 {
+    background-color: var(--color-blue-50);
+  }
+  .bg-blue-100 {
+    background-color: var(--color-blue-100);
+  }
+  .bg-blue-200 {
+    background-color: var(--color-blue-200);
+  }
+  .bg-blue-300 {
+    background-color: var(--color-blue-300);
+  }
+  .bg-blue-400 {
+    background-color: var(--color-blue-400);
+  }
+  .bg-blue-500 {
+    background-color: var(--color-blue-500);
+  }
+  .bg-blue-600 {
+    background-color: var(--color-blue-600);
+  }
+  .bg-blue-700 {
+    background-color: var(--color-blue-700);
+  }
+  .bg-blue-800 {
+    background-color: var(--color-blue-800);
+  }
+  .bg-blue-900 {
+    background-color: var(--color-blue-900);
+  }
+  .bg-blue-950 {
+    background-color: var(--color-blue-950);
   }
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}
+/* Margin utilities */
+.mobile-margin {
+  margin: var(--mobile-margin);
+}
+.tablet-margin {
+  margin: var(--tablet-margin);
+}
+.laptop-margin {
+  margin: var(--laptop-margin);
+}
+.desktop-margin {
+  margin: var(--desktop-margin);
 }
