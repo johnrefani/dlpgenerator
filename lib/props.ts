@@ -6,3 +6,12 @@ export type ButtonProps = {
     href: string;
     target?: "_self" | "_blank" | "_parent" | "_top"; 
   };
+
+export interface DocxViewerProps {
+  pangalanNgGuro: string;
+  petsaAtOras: string;
+  baitang: string;
+  asignatura: string;
+  markahan: string;
+  docxUrl: string;
+}
