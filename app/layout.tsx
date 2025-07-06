@@ -9,7 +9,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "DLP Generator",
+  title: "DLL Generator",
   description: "Generate lesson plans with ease",
   icons: {
     icon: "/logo.ico",
