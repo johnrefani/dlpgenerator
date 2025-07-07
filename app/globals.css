@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@layer components {
+  .error-message {
+    @apply relative md:absolute text-red-600 text-sm mt-1;
+  }
+}
 @layer base {
   :root {
     --foreground: #171717;
@@ -16,14 +21,21 @@
     --color-blue-900: #153d65;
     --color-blue-950: #0e2743;
 
-     /* Spacing */
+    /* Spacing */
     --mobile-margin: 1rem;
     --tablet-margin: 3.75rem;
     --laptop-margin: 6.25rem;
     --desktop-margin: 7.5rem;
-    
   }
-  h1, h2,h3,h4,h5,h6, p, hr, label{
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  hr,
+  label {
     color: var(--color-blue-950);
   }
   label {
@@ -33,7 +45,10 @@
   input,
   select {
     @apply px-3 py-2 border border-blue-950/25 rounded-sm 
-      focus:outline-none focus:ring-1 focus:ring-blue-950 cursor-pointer;
+      focus:outline-none  focus:ring-blue-950 cursor-pointer;
+  }
+  select {
+    @apply pr-3;
   }
   body {
     font-family: var(--font-montserrat), sans-serif;
