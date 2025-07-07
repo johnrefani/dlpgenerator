@@ -1,3 +1,21 @@
+export interface DLLDatum {
+  baitang: string;
+  asignatura: string;
+  markahan: string;
+  dllLink: string;
+}
+
+export const dllData: DLLDatum[] = [
+  {
+    baitang: "4",
+    asignatura: "GMRC",
+    markahan: "2",
+    dllLink:
+      "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1751871340/DLL-MATATAG-_GMRC-4-Q4-W1_br3aq1.docx",
+  },
+];
+
+
 export const dlpData = [
     {
         id: 1,

@@ -8,10 +8,7 @@ export type ButtonProps = {
   };
 
 export interface DocxViewerProps {
+  docxUrl: string;
   pangalanNgGuro: string;
   petsaAtOras: string;
-  baitang: string;
-  asignatura: string;
-  markahan: string;
-  docxUrl: string;
 }
