@@ -1,4 +1,5 @@
-// components/DocxPreviewer.tsx
+"use client"
+
 import { useRef, useEffect } from "react";
 import { renderAsync } from "docx-preview";
 
