@@ -17,9 +17,9 @@ export default function Page() {
 
   if (!selected) {
     return (
-      <div className="w-full py-8 px-4">
-        <p className="text-red-600 text-center">
-          Paumanhin, ang dokumento na iyong hinahanap ay wala!”.
+      <div className="w-full py-8 px-4 max-w-6xl justify-self-center">
+        <p className="text-red-600 text-center bg-white p-8 text-lg lg:text-xl font-semibold">
+          Paumanhin ngunit ang dokumento na iyong hinahanap ay wala!
         </p>
       </div>
     );
@@ -29,7 +29,7 @@ export default function Page() {
     <div className="w-full py-8 px-4">
       <DocxViewer
         cloudUrl={selected.dllLink}
-        pangalanNgGuro="Ma. Clara Reyes"
+        pangalanNgGuro="John Cloyd Refani"
         petsaAtOras="2025-07-08 08:00"
         baitang={baitang}
         asignatura={asignatura}
