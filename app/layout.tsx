@@ -1,6 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { Buffer } from "buffer";
+
+if (typeof window !== "undefined") {
+  (window as any).Buffer = Buffer;
+}
 
 const montserrat = Montserrat({
   subsets: ["latin"],
