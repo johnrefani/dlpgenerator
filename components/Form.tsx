@@ -9,6 +9,7 @@ const Form = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [errors, setErrors] = useState({
+    paaralan: false,
     teacher: false,
     datetime: false,
     grade: false,
@@ -20,12 +21,14 @@ const Form = () => {
     if (!formRef.current) return;
 
     const form = formRef.current;
+    const paaralan = (form["paaralan"] as HTMLInputElement).value.trim();
     const teacher = (form["teacher"] as HTMLInputElement).value.trim();
     const datetime = (form["datetime"] as HTMLInputElement).value;
     const grade = (form["grade"] as HTMLSelectElement).value;
     const week = (form["week"] as HTMLSelectElement).value;
 
     const newErrors = {
+      paaralan: paaralan === "",
       teacher: teacher === "",
       datetime: datetime === "",
       grade: grade === "",

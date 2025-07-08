@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import 'react-date-range/dist/styles.css';
+@import 'react-date-range/dist/theme/default.css';
 
 @layer components {
   .error-message {
@@ -197,4 +199,16 @@
   .docx-render-container .page {
     margin: 0 10px 0 0;
   }
+}
+
+
+.rdrDefinedRangesWrapper {
+  display: none !important;
+}
+
+.rdrCalendarWrapper {
+  @apply bg-white rounded-lg;
+}
+.rdrDayHovered .rdrDayNumber {
+  @apply bg-blue-100 text-blue-950;
 }

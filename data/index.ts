@@ -1,4 +1,5 @@
 export interface DLLDatum {
+  code: string;
   baitang: string;
   asignatura: string;
   markahan: string;
@@ -7,117 +8,42 @@ export interface DLLDatum {
 
 export const dllData: DLLDatum[] = [
   {
+    code: "Q4-W1",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "2",
     dllLink:
-      "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1751871340/DLL-MATATAG-_GMRC-4-Q4-W1_br3aq1.docx",
+      "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1751888360/DLL_MATATAG__GMRC_4_Q1_W1_k1bi3c.docx",
   },
 ];
 
-
-export const dlpData = [
-    {
-        id: 1,
-        paaralan: "",
-        pangalanNgGuro: "",
-        petsaAtOras: "",
-        lessonPlan: [
-            {
-                id: 1,
-                baitang: "",
-                asignatura: "",
-                markahan: "",
-                getLessonPlan: [
-                    {
-                        id: 1,
-                        title: "I. NILALAMAN NG KURIKULUM, PAMANTAYAN, AT MGA KASANAYAN SA ARALIN",
-                        content: [
-                            {
-                                id: 1,
-                                title: "A. Mga Pamantayang Pangnilalaman",
-                                impormasyon: ""
-                            },{
-                                id: 2,
-                                title: "B. Mga Pamantayan sa Pagganap",
-                                impormasyon: ""
-                            },{
-                                id: 3,
-                                title: "C. Mga Kasanayan at Layuning Pampagkatuto",
-                                impormasyon: ""
-                            },{
-                                id: 4,
-                                title: "D. Nilalaman",
-                                impormasyon: ""
-                            },{
-                                id: 5,
-                                title: "E. Pagpapahalagang Lilinangin",
-                                impormasyon: ""
-                            },{
-                                id: 6,
-                                title: "F. Integrasyon",
-                                impormasyon: ""
-                            },
-                        ],
-                    },{
-                        id: 2,
-                        title: "II. BATAYANG SANGGUNIAN SA PAGKATUTO",
-                        content: [
-                            {
-                                id: 1,
-                                impormasyon: "",
-                            },
-                        ],
-                    },{
-                        id: 3, 
-                        title: "III. MGA HAKBANG SA PAGTUTURO AT PAGKATUTO",
-                        content: [
-                            {
-                                id: 1,
-                                title: "A. Pagkuha ng Dating Kaalaman",
-                                impormasyon: "",
-                                mgaTala: "",
-                            },{
-                                id: 2,
-                                title: "B. Paglalahad ng Layunin",
-                                impormasyon: "",
-                                mgaTala: "",
-                            },{
-                                id: 3,
-                                title: "C. Paglinang at Pagpapalalim",
-                                impormasyon: "",
-                                mgaTala: "",
-                            },{
-                                id: 4,
-                                title: "D. Paglalahat",
-                                impormasyon: "",
-                                mgaTala: "",
-                            },
-                        ]
-                    },{
-                        id: 4,
-                        title: "IV. EBALWAYSON NG PAGKATUTO: PAGTATAYA AT PAGNINILAY",
-                        content: [
-                           {
-                                id: 1,
-                                title: "A. Pagtataya",
-                                impormasyon: "",
-                                mgaTala: "",
-                            },{
-                                id: 2,
-                                title: "B. Pagbuo ng Anotasyon",
-                                impormasyon: "",
-                                mgaTala: "",
-                            },{
-                                id: 3,
-                                title: "C. Pagninilay",
-                                impormasyon: "",
-                                mgaTala: "",
-                            },
-                        ],
-                    },
-                ],
-            },
-        ],
-    },
-];
+  // Options for the markahan combobox
+export const markahanOptions = [
+    { value: 'Q1_W1', label: 'Quarter 1 - Week 1' },
+    { value: 'Q1_W2', label: 'Quarter 1 - Week 2' },
+    { value: 'Q1_W3', label: 'Quarter 1 - Week 3' },
+    { value: 'Q1_W4', label: 'Quarter 1 - Week 4' },
+    { value: 'Q1_W5', label: 'Quarter 1 - Week 5' },
+    { value: 'Q1_W6', label: 'Quarter 1 - Week 6' },
+    { value: 'Q2_W1', label: 'Quarter 2 - Week 1' },
+    { value: 'Q2_W2', label: 'Quarter 2 - Week 2' },
+    { value: 'Q2_W3', label: 'Quarter 2 - Week 3' },
+    { value: 'Q2_W4', label: 'Quarter 2 - Week 4' },
+    { value: 'Q2_W5', label: 'Quarter 2 - Week 5' },
+    { value: 'Q2_W6', label: 'Quarter 2 - Week 6' },
+    { value: 'Q3_W1', label: 'Quarter 3 - Week 1' },
+    { value: 'Q3_W2', label: 'Quarter 3 - Week 2' },
+    { value: 'Q3_W3', label: 'Quarter 3 - Week 3' },
+    { value: 'Q3_W4', label: 'Quarter 3 - Week 4' },
+    { value: 'Q3_W5', label: 'Quarter 3 - Week 5' },
+    { value: 'Q3_W6', label: 'Quarter 3 - Week 6' },
+    { value: 'Q4_W1', label: 'Quarter 4 - Week 1' },
+    { value: 'Q4_W1_1', label: 'Quarter 4 - Week 1.1' },
+    { value: 'Q4_W2', label: 'Quarter 4 - Week 2' },
+    { value: 'Q4_W2_1', label: 'Quarter 4 - Week 2.1' },
+    { value: 'Q4_W3', label: 'Quarter 4 - Week 3' },
+    { value: 'Q4_W3_1', label: 'Quarter 4 - Week 3.1' },
+    { value: 'Q4_W4', label: 'Quarter 4 - Week 4' },
+    { value: 'Q4_W5', label: 'Quarter 4 - Week 5' },
+    { value: 'Q4_W6', label: 'Quarter 4 - Week 6' },
+  ];
