@@ -13,7 +13,6 @@ const Form = () => {
     teacher: false,
     datetime: false,
     grade: false,
-    subject: false,
     week: false,
   });
 
@@ -26,7 +25,6 @@ const Form = () => {
     const teacher = (form["teacher"] as HTMLInputElement).value.trim();
     const datetime = (form["datetime"] as HTMLInputElement).value;
     const grade = (form["grade"] as HTMLSelectElement).value;
-    const subject = (form["subject"] as HTMLSelectElement).value;
     const week = (form["week"] as HTMLSelectElement).value;
 
     const newErrors = {
@@ -34,7 +32,6 @@ const Form = () => {
       teacher: teacher === "",
       datetime: datetime === "",
       grade: grade === "",
-      subject: subject === "",
       week: week === "",
     };
 
@@ -120,22 +117,6 @@ const Form = () => {
             )}
           </div>
 
-          {/* Asignatura */}
-          <label className="col-span-2 flex items-center">Asignatura</label>
-          <div className="col-span-3">
-            <select name="subject" className="max-w-72 w-full relative">
-              <option value="">Pumili ng Asignatura</option>
-              <option value="Filipino">Filipino</option>
-              <option value="Math">Matematika</option>
-              <option value="Science">Agham</option>
-              <option value="English">Ingles</option>
-              <option value="Araling Panlipunan">Araling Panlipunan</option>
-              <option value="ESP">Edukasyon sa Pagpapakatao</option>
-            </select>
-            {errors.subject && (
-              <p className="error-message">* Piliin ang asignatura</p>
-            )}
-          </div>
 
           {/* Markahan at Linggo */}
           <label className="col-span-2 flex items-center">
