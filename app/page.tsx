@@ -1,10 +1,11 @@
-import Form from "@/components/Form";
+import InfoForm from "@/components/InfoForm";
+
 
 export default function Home() {
   return (
-   <main className="flex-center flex-col pt-8">
-      <h1 className="text-3xl text-white font-bold text-center mb-8">DAILY LESSON LOG</h1>
-      <Form/>
+   <main className="flex-center flex-col my-8 space-y-6 md:space-y-7 lg:space-y-8">
+      <h1 className="text-3xl text-white font-bold text-center">DAILY LESSON LOG</h1>
+      <InfoForm />
    </main>
   );
 }

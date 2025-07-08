@@ -29,7 +29,7 @@ export default function Page() {
     <div className="w-full py-8 px-4">
       <DocxViewer
         cloudUrl={selected.dllLink}
-        pangalanNgGuro="John Cloyd Refani"
+        pangalanNgGuro="Ambo"
         petsaAtOras="2025-07-08 08:00"
         baitang={baitang}
         asignatura={asignatura}
