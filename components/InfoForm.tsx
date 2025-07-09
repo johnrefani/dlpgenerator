@@ -1,61 +1,67 @@
-"use client"
+"use client";
 
-import Image from 'next/image';
-import React, { useState, useRef, useEffect } from 'react';
-import Button from './Button';
-import { FaChevronRight } from 'react-icons/fa';
-import { DateRangePicker, Range, RangeKeyDict } from 'react-date-range';
-import { format, isSameMonth, parse, addDays, isSameDay } from 'date-fns';
-import { markahanOptions } from '@/data';
+import Image from "next/image";
+import React, { useState, useRef, useEffect } from "react";
+import Button from "./Button";
+import { FaChevronRight } from "react-icons/fa";
+import { DateRangePicker, Range, RangeKeyDict } from "react-date-range";
+import { format, isSameMonth, parse, isSameDay } from "date-fns";
+import { markahanOptions } from "@/data";
 
 const InfoForm = () => {
   const [range, setRange] = useState<Range>({
     startDate: new Date(),
-    endDate: addDays(new Date(), 1),
-    key: 'selection',
+    endDate: new Date(),
+    key: "selection",
   });
-
-  const [weekNumber, setWeekNumber] = useState<string>('1');
-  const [startTime, setStartTime] = useState<string>('09:30');
-  const [endTime, setEndTime] = useState<string>('10:30');
-  const [markahan, setMarkahan] = useState<string>('Q1_W1');
+  const [weekNumber, setWeekNumber] = useState<string>("1");
+  const [startTime, setStartTime] = useState<string>("09:30");
+  const [endTime, setEndTime] = useState<string>("10:30");
+  const [markahan, setMarkahan] = useState<string>("Q1_W1");
+  const [paaralan, setPaaralan] = useState<string>("");
+  const [pangalanNgGuro, setPangalanNgGuro] = useState<string>("");
   const [showCalendar, setShowCalendar] = useState(false);
 
   const calendarRef = useRef<HTMLDivElement>(null);
 
   const handleRangeChange = (ranges: RangeKeyDict) => {
     const { startDate, endDate } = ranges.selection;
-    
-    if (startDate && endDate && isSameDay(startDate, endDate)) {
-      setRange({
-        ...ranges.selection,
-        endDate: addDays(endDate, 1),
-      });
+    setRange({
+      ...ranges.selection,
+      endDate: startDate && endDate && isSameDay(startDate, endDate) ? startDate : endDate,
+    });
+    if (startDate && endDate && !isSameDay(startDate, endDate)) {
       setShowCalendar(false);
-    } else {
-      setRange(ranges.selection);
-      if (startDate !== endDate) {
-        setShowCalendar(false);
-      }
     }
   };
 
-  const formattedDateRange =
-    range.startDate && range.endDate
-      ? isSameMonth(range.startDate, range.endDate)
-        ? `${format(range.startDate, 'MMMM d')} - ${format(range.endDate, 'd, yyyy')}`
-        : `${format(range.startDate, 'MMMM d')} - ${format(range.endDate, 'MMMM d, yyyy')}`
-      : 'Select a date range';
+  const formattedDateRange = (() => {
+    if (!range.startDate) return "Select a date range";
+    if (!range.endDate || isSameDay(range.startDate, range.endDate)) {
+      return format(range.startDate, "MMMM d, yyyy");
+    }
+    if (isSameMonth(range.startDate, range.endDate)) {
+      return `${format(range.startDate, "MMMM d")} - ${format(range.endDate, "d, yyyy")}`;
+    }
+    return `${format(range.startDate, "MMMM d")} - ${format(range.endDate, "MMMM d, yyyy")}`;
+  })();
 
   const formatTimeWithAMPM = (time: string) => {
-    const parsedTime = parse(time, 'HH:mm', new Date());
-    return format(parsedTime, 'h:mm a');
+    const parsedTime = parse(time, "HH:mm", new Date());
+    return format(parsedTime, "h:mm a");
   };
 
   const formattedOutput =
     range.startDate && range.endDate
       ? `${formattedDateRange} WEEK ${weekNumber} ${formatTimeWithAMPM(startTime)} - ${formatTimeWithAMPM(endTime)}`
-      : 'Select a date range';
+      : "Select a date range";
+
+  const href = `/${markahan}?${new URLSearchParams({
+    paaralan,
+    pangalanNgGuro,
+    petsaAtOras: formattedOutput,
+    markahan,
+  }).toString()}`;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -63,8 +69,8 @@ const InfoForm = () => {
         setShowCalendar(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -88,12 +94,24 @@ const InfoForm = () => {
         <label htmlFor="paaralan" className="flex items-center text-blue-950 font-semibold text-sm col-span-2">
           Paaralan
         </label>
-        <input type="text" id="paaralan" className="w-full col-span-3 p-2 border border-gray-300 rounded" />
+        <input
+          type="text"
+          id="paaralan"
+          value={paaralan}
+          onChange={(e) => setPaaralan(e.target.value)}
+          className="w-full col-span-3 p-2 border border-gray-300 rounded"
+        />
 
         <label htmlFor="pangalan" className="flex items-center text-blue-950 font-semibold text-sm col-span-2">
           Pangalan ng Guro
         </label>
-        <input type="text" id="pangalan" className="w-full col-span-3 p-2 border border-gray-300 rounded" />
+        <input
+          type="text"
+          id="pangalan"
+          value={pangalanNgGuro}
+          onChange={(e) => setPangalanNgGuro(e.target.value)}
+          className="w-full col-span-3 p-2 border border-gray-300 rounded"
+        />
 
         <label className="flex items-start text-blue-950 font-semibold text-sm col-span-2">
           Petsa at Oras ng Pagtuturo
@@ -183,7 +201,7 @@ const InfoForm = () => {
           id="markahan"
           value={markahan}
           onChange={(e) => setMarkahan(e.target.value)}
-          className="w-full col-span-2 p-2 border border-gray-300 rounded markahan-combobox"
+          className="w-full col-span-2 p-2 border border-gray-300 rounded"
         >
           {markahanOptions.map((option) => (
             <option key={option.value} value={option.value}>
@@ -196,7 +214,7 @@ const InfoForm = () => {
       <div className="justify-self-end">
         <Button
           title="Preview"
-          href="#"
+          href={href}
           icon={<FaChevronRight />}
           className="justify-self-end"
         />
