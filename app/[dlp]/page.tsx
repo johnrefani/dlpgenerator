@@ -1,8 +1,10 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { dllData } from "@/data";
-import DocxViewer from "@/components/DocxViewer";
+import {
+  dllData,
+  DocxViewer,
+} from "@/lib/imports";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -11,7 +13,6 @@ export default function Page() {
   const pangalanNgGuro = searchParams.get("pangalanNgGuro") || "N/A";
   const petsaAtOras = searchParams.get("petsaAtOras") || "N/A";
   const markahan = searchParams.get("markahan") || "N/A";
-
 
   const selected = dllData.find((d) => d.code === markahan);
 
