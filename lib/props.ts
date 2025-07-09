@@ -1,8 +1,3 @@
-export interface DocxViewerProps {
-  docxUrl: string;
-  pangalanNgGuro: string;
-  petsaAtOras: string;
-};
 export interface ButtonProps {
   title: string;
   icon?: React.ReactNode;
@@ -11,3 +6,23 @@ export interface ButtonProps {
   target?: "_self" | "_blank";
   onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void; 
 };
+export interface DocxPreviewerProps {
+  blob: Blob;
+}
+export interface DocxViewerProps {
+  cloudUrl: string;
+  paaralan: string;
+  pangalanNgGuro: string;
+  petsaAtOras: string;
+  code: string;
+}
+export interface LoadingPopupProps {
+  isOpen: boolean;
+}
+export interface DLLData {
+  code: string;
+  baitang: string;
+  asignatura: string;
+  markahan: string;
+  dllLink: string;
+}

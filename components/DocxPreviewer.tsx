@@ -2,10 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { renderAsync } from "docx-preview";
-
-interface DocxPreviewerProps {
-  blob: Blob;
-}
+import { DocxPreviewerProps } from "@/lib/props";
 
 export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface LoadingPopupProps {
-  isOpen: boolean;
-}
+import { LoadingPopupProps } from '@/lib/props';
 
 const LoadingPopup: React.FC<LoadingPopupProps> = ({ isOpen }) => {
   if (!isOpen) return null;

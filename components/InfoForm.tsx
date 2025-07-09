@@ -3,12 +3,15 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useState, useRef, useEffect } from 'react';
-import Button from './Button';
 import { FaChevronRight } from 'react-icons/fa';
 import { DateRangePicker, Range, RangeKeyDict } from 'react-date-range';
 import { format, isSameMonth, parse, isSameDay } from 'date-fns';
-import { markahanOptions } from '@/data';
-import LoadingPopup from './LoadingPopup';
+
+import {
+  Button,
+  markahanOptions,
+  LoadingPopup,
+} from "@/lib/imports";
 
 const InfoForm = () => {
   const router = useRouter();

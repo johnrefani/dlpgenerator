@@ -1,14 +1,11 @@
-import { useState, useEffect } from "react";
-import { generateFilledDocx } from "@/lib/docx";
-import DocxPreviewer from "@/components/DocxPreviewer";
+"use client"
 
-export interface DocxViewerProps {
-  cloudUrl: string;
-  paaralan: string;
-  pangalanNgGuro: string;
-  petsaAtOras: string;
-  code: string;
-}
+import { useState, useEffect } from "react";
+import {
+  generateFilledDocx,
+  DocxPreviewer,
+} from "@/lib/imports";
+import { DocxViewerProps } from "@/lib/props";
 
 export default function DocxViewer({
   cloudUrl,

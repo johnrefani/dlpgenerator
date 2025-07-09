@@ -1,5 +1,4 @@
-import InfoForm from "@/components/InfoForm";
-
+import { InfoForm } from "@/lib/imports";
 
 export default function Home() {
   return (

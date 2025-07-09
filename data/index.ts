@@ -1,10 +1,4 @@
-export interface DLLData {
-  code: string;
-  baitang: string;
-  asignatura: string;
-  markahan: string;
-  dllLink: string;
-}
+import { DLLData } from "@/lib/props";
 
 export const dllData: DLLData[] = [
   {
