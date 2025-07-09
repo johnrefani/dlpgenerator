@@ -4,20 +4,18 @@ import DocxPreviewer from "@/components/DocxPreviewer";
 
 export interface DocxViewerProps {
   cloudUrl: string;
+  paaralan: string;
   pangalanNgGuro: string;
   petsaAtOras: string;
-  baitang: string;
-  asignatura: string;
-  markahan: string;
+  code: string;
 }
 
 export default function DocxViewer({
   cloudUrl,
+  paaralan,
   pangalanNgGuro,
   petsaAtOras,
-  baitang,
-  asignatura,
-  markahan,
+  code,
 }: DocxViewerProps) {
   const [blob, setBlob] = useState<Blob | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -30,9 +28,7 @@ export default function DocxViewer({
     generateFilledDocx(cloudUrl, {
       "Pangalan ng Guro": pangalanNgGuro,
       "Petsa at Oras ng Pagtuturo": petsaAtOras,
-      baitang,
-      asignatura,
-      markahan,
+      "Paaralan": paaralan,
     })
       .then(blob => {
         setBlob(blob);
@@ -46,20 +42,18 @@ export default function DocxViewer({
     generateFilledDocx(cloudUrl, {
       "Pangalan ng Guro": pangalanNgGuro,
       "Petsa at Oras ng Pagtuturo": petsaAtOras,
-      baitang,
-      asignatura,
-      markahan,
+      "Paaralan": paaralan,
     })
       .then(setDownloadBlob)
       .catch(console.error);
 
-  }, [cloudUrl, pangalanNgGuro, petsaAtOras, baitang, asignatura, markahan]);
+  }, [cloudUrl, paaralan, pangalanNgGuro, petsaAtOras]);
 
   const handleDownload = () => {
     if (!downloadBlob) return;
     
     const url = URL.createObjectURL(downloadBlob);
-    const fileName = `DLL-${baitang}-${asignatura}-${markahan}.docx`;
+    const fileName = `DLL_MATATAG_GMRC_4_${code}.docx`;
     
     const a = document.createElement('a');
     a.href = url;
