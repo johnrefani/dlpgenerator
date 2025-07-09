@@ -4,15 +4,11 @@ import { dllData } from "@/data";
 import DocxViewer from "@/components/DocxViewer";
 
 export default function Page() {
-  const baitang = "4";
-  const asignatura = "GMRC";
-  const markahan = "2";
+  const code = "Q1_W1"
 
   const selected = dllData.find(
     (d) =>
-      d.baitang === baitang &&
-      d.asignatura === asignatura &&
-      d.markahan === markahan
+      d.code === code
   );
 
   if (!selected) {
@@ -29,11 +25,10 @@ export default function Page() {
     <div className="w-full py-8 px-4">
       <DocxViewer
         cloudUrl={selected.dllLink}
+        code={code}
+        paaralan="CNSC"
         pangalanNgGuro="Ambo"
-        petsaAtOras="2025-07-08 08:00"
-        baitang={baitang}
-        asignatura={asignatura}
-        markahan={markahan}
+        petsaAtOras="July 9 - 10, 2025 WEEK 1 9:30 AM - 10:30 AM"
       />
     </div>
   );
