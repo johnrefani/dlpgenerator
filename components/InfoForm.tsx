@@ -1,26 +1,30 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import React, { useState, useRef, useEffect } from "react";
-import Button from "./Button";
-import { FaChevronRight } from "react-icons/fa";
-import { DateRangePicker, Range, RangeKeyDict } from "react-date-range";
-import { format, isSameMonth, parse, isSameDay } from "date-fns";
-import { markahanOptions } from "@/data";
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import React, { useState, useRef, useEffect } from 'react';
+import Button from './Button';
+import { FaChevronRight } from 'react-icons/fa';
+import { DateRangePicker, Range, RangeKeyDict } from 'react-date-range';
+import { format, isSameMonth, parse, isSameDay } from 'date-fns';
+import { markahanOptions } from '@/data';
+import LoadingPopup from './LoadingPopup';
 
 const InfoForm = () => {
+  const router = useRouter();
   const [range, setRange] = useState<Range>({
     startDate: new Date(),
     endDate: new Date(),
-    key: "selection",
+    key: 'selection',
   });
-  const [weekNumber, setWeekNumber] = useState<string>("1");
-  const [startTime, setStartTime] = useState<string>("09:30");
-  const [endTime, setEndTime] = useState<string>("10:30");
-  const [markahan, setMarkahan] = useState<string>("Q1_W1");
-  const [paaralan, setPaaralan] = useState<string>("");
-  const [pangalanNgGuro, setPangalanNgGuro] = useState<string>("");
+  const [weekNumber, setWeekNumber] = useState<string>('1');
+  const [startTime, setStartTime] = useState<string>('09:30');
+  const [endTime, setEndTime] = useState<string>('10:30');
+  const [markahan, setMarkahan] = useState<string>('Q1_W1');
+  const [paaralan, setPaaralan] = useState<string>('');
+  const [pangalanNgGuro, setPangalanNgGuro] = useState<string>('');
   const [showCalendar, setShowCalendar] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const calendarRef = useRef<HTMLDivElement>(null);
 
@@ -36,25 +40,25 @@ const InfoForm = () => {
   };
 
   const formattedDateRange = (() => {
-    if (!range.startDate) return "Select a date range";
+    if (!range.startDate) return 'Select a date range';
     if (!range.endDate || isSameDay(range.startDate, range.endDate)) {
-      return format(range.startDate, "MMMM d, yyyy");
+      return format(range.startDate, 'MMMM d, yyyy');
     }
     if (isSameMonth(range.startDate, range.endDate)) {
-      return `${format(range.startDate, "MMMM d")} - ${format(range.endDate, "d, yyyy")}`;
+      return `${format(range.startDate, 'MMMM d')} - ${format(range.endDate, 'd, yyyy')}`;
     }
-    return `${format(range.startDate, "MMMM d")} - ${format(range.endDate, "MMMM d, yyyy")}`;
+    return `${format(range.startDate, 'MMMM d')} - ${format(range.endDate, 'MMMM d, yyyy')}`;
   })();
 
   const formatTimeWithAMPM = (time: string) => {
-    const parsedTime = parse(time, "HH:mm", new Date());
-    return format(parsedTime, "h:mm a");
+    const parsedTime = parse(time, 'HH:mm', new Date());
+    return format(parsedTime, 'h:mm a');
   };
 
   const formattedOutput =
     range.startDate && range.endDate
       ? `${formattedDateRange} WEEK ${weekNumber} ${formatTimeWithAMPM(startTime)} - ${formatTimeWithAMPM(endTime)}`
-      : "Select a date range";
+      : 'Select a date range';
 
   const href = `/${markahan}?${new URLSearchParams({
     paaralan,
@@ -63,14 +67,22 @@ const InfoForm = () => {
     markahan,
   }).toString()}`;
 
+  const handlePreviewClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      router.push(href);
+    }, 3000);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
         setShowCalendar(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   return (
@@ -215,10 +227,16 @@ const InfoForm = () => {
         <Button
           title="Preview"
           href={href}
+          onClick={(e: React.MouseEvent) => {
+            e.preventDefault();
+            handlePreviewClick();
+          }}
           icon={<FaChevronRight />}
           className="justify-self-end"
         />
       </div>
+
+      <LoadingPopup isOpen={isLoading} />
     </div>
   );
 };
