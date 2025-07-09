@@ -1,21 +1,25 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { dllData } from "@/data";
 import DocxViewer from "@/components/DocxViewer";
 
 export default function Page() {
-  const code = "Q1_W1"
+  const searchParams = useSearchParams();
+  
+  const paaralan = searchParams.get("paaralan") || "N/A";
+  const pangalanNgGuro = searchParams.get("pangalanNgGuro") || "N/A";
+  const petsaAtOras = searchParams.get("petsaAtOras") || "N/A";
+  const markahan = searchParams.get("markahan") || "N/A";
 
-  const selected = dllData.find(
-    (d) =>
-      d.code === code
-  );
+
+  const selected = dllData.find((d) => d.code === markahan);
 
   if (!selected) {
     return (
       <div className="w-full py-8 px-4 max-w-6xl justify-self-center">
         <p className="text-red-600 text-center bg-white p-8 text-lg lg:text-xl font-semibold">
-          Paumanhin ngunit ang dokumento na iyong hinahanap ay wala!
+          Paumanhin ngunit ang dokumento na iyong hinahanap ay hindi makita!
         </p>
       </div>
     );
@@ -25,10 +29,10 @@ export default function Page() {
     <div className="w-full py-8 px-4">
       <DocxViewer
         cloudUrl={selected.dllLink}
-        code={code}
-        paaralan="CNSC"
-        pangalanNgGuro="Ambo"
-        petsaAtOras="July 9 - 10, 2025 WEEK 1 9:30 AM - 10:30 AM"
+        code={markahan}
+        paaralan={paaralan}
+        pangalanNgGuro={pangalanNgGuro}
+        petsaAtOras={petsaAtOras}
       />
     </div>
   );
