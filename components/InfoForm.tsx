@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useState, useRef, useEffect } from 'react';
-import { FaChevronRight } from 'react-icons/fa';
+import { FaChevronRight, FaExclamationCircle } from 'react-icons/fa';
 import { DateRangePicker, Range, RangeKeyDict } from 'react-date-range';
 import { format, isSameMonth, parse, isSameDay } from 'date-fns';
 
@@ -12,6 +12,13 @@ import {
   markahanOptions,
   LoadingPopup,
 } from "@/lib/imports";
+
+const ErrorMessage = ({ message }: { message: string }) => (
+  <div className="flex items-center mt-1 text-red-600 text-xs">
+    <FaExclamationCircle className="mr-1" />
+    <span>{message}</span>
+  </div>
+);
 
 const InfoForm = () => {
   const router = useRouter();
@@ -28,6 +35,7 @@ const InfoForm = () => {
   const [pangalanNgGuro, setPangalanNgGuro] = useState<string>('');
   const [showCalendar, setShowCalendar] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const calendarRef = useRef<HTMLDivElement>(null);
 
@@ -37,6 +45,11 @@ const InfoForm = () => {
       ...ranges.selection,
       endDate: startDate && endDate && isSameDay(startDate, endDate) ? startDate : endDate,
     });
+    if (errors.dateRange) {
+      const newErrors = { ...errors };
+      delete newErrors.dateRange;
+      setErrors(newErrors);
+    }
     if (startDate && endDate && !isSameDay(startDate, endDate)) {
       setShowCalendar(false);
     }
@@ -70,7 +83,45 @@ const InfoForm = () => {
     markahan,
   }).toString()}`;
 
-  const handlePreviewClick = () => {
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!paaralan.trim()) {
+      newErrors.paaralan = 'Paaralan ay kailangang ilagay';
+    }
+    if (!pangalanNgGuro.trim()) {
+      newErrors.pangalanNgGuro = 'Pangalan ng guro ay kailangang ilagay';
+    }
+    if (!range.startDate) {
+      newErrors.dateRange = 'Pumili ng petsa';
+    }
+    if (!weekNumber || isNaN(Number(weekNumber))) {
+      newErrors.weekNumber = 'Linggo ay dapat numero';
+    }
+    if (!startTime) {
+      newErrors.startTime = 'Oras ng pagsisimula ay kailangan';
+    }
+    if (!endTime) {
+      newErrors.endTime = 'Oras ng pagtatapos ay kailangan';
+    }
+    if (startTime && endTime && startTime >= endTime) {
+      newErrors.timeRange = 'Oras ng pagtatapos ay dapat mas huli sa pagsisimula';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handlePreviewClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    const isValid = validateForm();
+    if (!isValid) {
+      const firstError = Object.keys(errors)[0];
+      document.getElementById(firstError)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
@@ -87,6 +138,9 @@ const InfoForm = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  const getInputClass = (fieldName: string) => 
+    `w-full p-2 border rounded ${errors[fieldName] ? 'border-red-500' : 'border-gray-300'}`;
 
   return (
     <div className="bg-white rounded-lg p-8 max-w-[750px] space-y-8">
@@ -109,24 +163,36 @@ const InfoForm = () => {
         <label htmlFor="paaralan" className="flex items-center text-blue-950 font-semibold text-sm col-span-2">
           Paaralan
         </label>
-        <input
-          type="text"
-          id="paaralan"
-          value={paaralan}
-          onChange={(e) => setPaaralan(e.target.value)}
-          className="w-full col-span-3 p-2 border border-gray-300 rounded"
-        />
+        <div className="col-span-3">
+          <input
+            type="text"
+            id="paaralan"
+            value={paaralan}
+            onChange={(e) => {
+              setPaaralan(e.target.value);
+              if (errors.paaralan) setErrors({...errors, paaralan: ''});
+            }}
+            className={getInputClass('paaralan')}
+          />
+          {errors.paaralan && <ErrorMessage message={errors.paaralan} />}
+        </div>
 
         <label htmlFor="pangalan" className="flex items-center text-blue-950 font-semibold text-sm col-span-2">
           Pangalan ng Guro
         </label>
-        <input
-          type="text"
-          id="pangalan"
-          value={pangalanNgGuro}
-          onChange={(e) => setPangalanNgGuro(e.target.value)}
-          className="w-full col-span-3 p-2 border border-gray-300 rounded"
-        />
+        <div className="col-span-3">
+          <input
+            type="text"
+            id="pangalan"
+            value={pangalanNgGuro}
+            onChange={(e) => {
+              setPangalanNgGuro(e.target.value);
+              if (errors.pangalanNgGuro) setErrors({...errors, pangalanNgGuro: ''});
+            }}
+            className={getInputClass('pangalanNgGuro')}
+          />
+          {errors.pangalanNgGuro && <ErrorMessage message={errors.pangalanNgGuro} />}
+        </div>
 
         <label className="flex items-start text-blue-950 font-semibold text-sm col-span-2">
           Petsa at Oras ng Pagtuturo
@@ -138,15 +204,16 @@ const InfoForm = () => {
             </label>
             <input
               type="text"
-              id="petsa"
+              id="dateRange"
               value={formattedDateRange}
               readOnly
               onClick={() => setShowCalendar(!showCalendar)}
-              className="w-full p-2 border border-gray-300 rounded cursor-pointer"
+              className={`w-full p-2 border rounded cursor-pointer ${errors.dateRange ? 'border-red-500' : 'border-gray-300'}`}
               aria-expanded={showCalendar}
               aria-controls="date-range-picker"
               aria-haspopup="dialog"
             />
+            {errors.dateRange && <ErrorMessage message={errors.dateRange} />}
             {showCalendar && (
               <div
                 className="absolute z-10 mt-1 bg-white border border-gray-300 rounded shadow-lg"
@@ -167,14 +234,23 @@ const InfoForm = () => {
           <label htmlFor="linggo" className="flex items-center text-blue-950 font-semibold text-xs col-span-2 mb-1.5">
             Pumili ng Linggo
           </label>
-          <input
-            type="number"
-            id="linggo"
-            value={weekNumber}
-            onChange={(e) => setWeekNumber(e.target.value)}
-            min="1"
-            className="w-full col-span-1 mb-4 p-2 border border-gray-300 rounded"
-          />
+          <div className="col-span-1 mb-4">
+            <input
+              type="number"
+              id="linggo"
+              value={weekNumber}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === '' || (Number(value) > 0 && !isNaN(Number(value)))) {
+                  setWeekNumber(value);
+                  if (errors.weekNumber) setErrors({...errors, weekNumber: ''});
+                }
+              }}
+              min="1"
+              className={getInputClass('weekNumber')}
+            />
+            {errors.weekNumber && <ErrorMessage message={errors.weekNumber} />}
+          </div>
 
           <div className="col-span-2 grid grid-cols-2 gap-4">
             <div>
@@ -185,9 +261,18 @@ const InfoForm = () => {
                 type="time"
                 id="oras-simula"
                 value={startTime}
-                onChange={(e) => setStartTime(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded time-picker"
+                onChange={(e) => {
+                  setStartTime(e.target.value);
+                  if (errors.startTime || errors.timeRange) {
+                    const newErrors = {...errors};
+                    delete newErrors.startTime;
+                    delete newErrors.timeRange;
+                    setErrors(newErrors);
+                  }
+                }}
+                className={getInputClass('startTime')}
               />
+              {errors.startTime && <ErrorMessage message={errors.startTime} />}
             </div>
             <div>
               <label htmlFor="oras-tapos" className="text-blue-950 font-semibold text-xs mb-1.5">
@@ -197,11 +282,25 @@ const InfoForm = () => {
                 type="time"
                 id="oras-tapos"
                 value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded time-picker"
+                onChange={(e) => {
+                  setEndTime(e.target.value);
+                  if (errors.endTime || errors.timeRange) {
+                    const newErrors = {...errors};
+                    delete newErrors.endTime;
+                    delete newErrors.timeRange;
+                    setErrors(newErrors);
+                  }
+                }}
+                className={getInputClass('endTime')}
               />
+              {errors.endTime && <ErrorMessage message={errors.endTime} />}
             </div>
           </div>
+          {errors.timeRange && (
+            <div className="col-span-2">
+              <ErrorMessage message={errors.timeRange} />
+            </div>
+          )}
 
           <div className="col-span-2 mt-2">
             <label className="text-blue-950 font-semibold text-xs">Preview:</label>
@@ -230,10 +329,7 @@ const InfoForm = () => {
         <Button
           title="Preview"
           href={href}
-          onClick={(e: React.MouseEvent) => {
-            e.preventDefault();
-            handlePreviewClick();
-          }}
+          onClick={handlePreviewClick}
           icon={<FaChevronRight />}
           className="justify-self-end"
         />
