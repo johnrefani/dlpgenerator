@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Buffer } from "buffer";
 
-// Only assign Buffer to window if running in the browser
 if (typeof window !== "undefined") {
   window.Buffer = Buffer;
 }
