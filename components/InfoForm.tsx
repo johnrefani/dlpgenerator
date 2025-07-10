@@ -143,7 +143,7 @@ const InfoForm = () => {
     `w-full p-2 border rounded ${errors[fieldName] ? 'border-red-500' : 'border-gray-300'}`;
 
   return (
-    <div className="bg-white rounded-lg p-8 max-w-[750px] space-y-8">
+    <div className="bg-white rounded-lg p-6 lg:p-8 max-w-[750px] space-y-6 lg:space-y-8">
       <div className="flex space-x-2 justify-center">
         <Image src="/logo.png" alt="logo" height={80} width={80} />
         <h1 className="text-base font-bold text-blue-950">
@@ -158,8 +158,8 @@ const InfoForm = () => {
         <h1 className="font-bold text-base text-blue-950 mb-1.5">PANGUNAHING IMPORMASYON</h1>
         <p className="text-xs text-blue-950/50">Ibigay ang mga kinakailangang impormasyon.</p>
       </div>
-      <div className="border-t-3 border-blue-950/25 w-[685px]"></div>
-      <div className="px-8 grid grid-cols-5 gap-6">
+      <div className="border-t-3 border-blue-950/25 w-full"></div>
+      <div className="px-4 md:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
         <label htmlFor="paaralan" className="flex items-center text-blue-950 font-semibold text-sm col-span-2">
           Paaralan
         </label>
@@ -197,10 +197,10 @@ const InfoForm = () => {
         <label className="flex items-start text-blue-950 font-semibold text-sm col-span-2">
           Petsa at Oras ng Pagtuturo
         </label>
-        <div className="col-span-3 grid grid-cols-2">
-          <div className="col-span-2 mb-4 relative" ref={calendarRef}>
+        <div className="col-span-3 grid grid-cols-2 gap-4 items-end">
+          <div className="" ref={calendarRef}>
             <label htmlFor="petsa" className="flex items-center text-blue-950 font-semibold text-xs col-span-2 mb-1.5">
-              Pumili ng hanay ng Petsa
+              Hanay ng Petsa
             </label>
             <input
               type="text"
@@ -230,11 +230,13 @@ const InfoForm = () => {
                 />
               </div>
             )}
+
           </div>
-          <label htmlFor="linggo" className="flex items-center text-blue-950 font-semibold text-xs col-span-2 mb-1.5">
+          <div>
+             <label htmlFor="linggo" className="flex items-center text-blue-950 font-semibold text-xs mb-1.5">
             Pumili ng Linggo
           </label>
-          <div className="col-span-1 mb-4">
+          <div className="">
             <input
               type="number"
               id="linggo"
@@ -251,10 +253,12 @@ const InfoForm = () => {
             />
             {errors.weekNumber && <ErrorMessage message={errors.weekNumber} />}
           </div>
+          </div>
+         
 
-          <div className="col-span-2 grid grid-cols-2 gap-4">
+          <div className="col-span-2 grid grid-cols-2 gap-4 items-end">
             <div>
-              <label htmlFor="oras-simula" className="text-blue-950 font-semibold text-xs mb-1.5">
+              <label htmlFor="oras-simula" className="flex items-center text-blue-950 font-semibold text-xs mb-1.5">
                 Oras ng Pagsisimula
               </label>
               <input
@@ -315,7 +319,7 @@ const InfoForm = () => {
           id="markahan"
           value={markahan}
           onChange={(e) => setMarkahan(e.target.value)}
-          className="w-full col-span-2 p-2 border border-gray-300 rounded"
+          className="w-full col-span-3 p-2 border border-gray-300 rounded"
         >
           {markahanOptions.map((option) => (
             <option key={option.value} value={option.value}>
