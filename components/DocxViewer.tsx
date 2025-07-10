@@ -66,14 +66,14 @@ export default function DocxViewer({
 
   if (error)
     return (
-      <div className="text-red-600 p-4 border border-red-300 rounded w-full text-center">
+      <div className="text-red-600 p-4 border border-red-300 rounded w-full text-center mt-6 md:mt-7 lg:mt-8">
         {error}
       </div>
     );
     
   if (!blob)
     return (
-      <div className="text-blue-950 justify-self-center text-lg font-semibold lg:text-xl p-4 w-full md:w-[350px] lg:w-[450px] bg-white rounded text-center">
+      <div className="text-blue-950 justify-self-center text-lg font-semibold lg:text-xl p-4 w-[300px] md:w-[350px] lg:w-[450px] bg-white rounded text-center mt-6 md:mt-7 lg:mt-8">
         Loading document…
       </div>
     );
