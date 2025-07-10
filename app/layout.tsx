@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Buffer } from "buffer";
 
+// Only assign Buffer to window if running in the browser
 if (typeof window !== "undefined") {
-  (window as any).Buffer = Buffer;
+  window.Buffer = Buffer;
 }
 
 const montserrat = Montserrat({
@@ -28,9 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={montserrat.variable}>
-      <body className="antialiased">
-        {children}
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
