@@ -27,7 +27,7 @@ export default function Page() {
   }
 
   return (
-    <div className="w-full py-8 px-4">
+    <div className="w-full min-h-screen">
       <DocxViewer
         cloudUrl={selected.dllLink}
         code={markahan}
