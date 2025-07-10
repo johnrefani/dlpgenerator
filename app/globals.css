@@ -1,5 +1,12 @@
 @import "tailwindcss";
+@import 'react-date-range/dist/styles.css';
+@import 'react-date-range/dist/theme/default.css';
 
+@layer components {
+  .error-message {
+    @apply relative md:absolute text-red-600 text-sm mt-1;
+  }
+}
 @layer base {
   :root {
     --foreground: #171717;
@@ -16,16 +23,54 @@
     --color-blue-900: #153d65;
     --color-blue-950: #0e2743;
 
-     /* Spacing */
+    /* Spacing */
     --mobile-margin: 1rem;
     --tablet-margin: 3.75rem;
     --laptop-margin: 6.25rem;
     --desktop-margin: 7.5rem;
   }
-
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  hr,
+  label {
+    color: var(--color-blue-950);
+  }
+  label {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  input,
+  select {
+    @apply px-3 py-2 border border-blue-950/25 rounded-sm 
+      focus:outline-none  focus:ring-blue-950 cursor-pointer;
+  }
+  select {
+    @apply pr-3;
+  }
   body {
     font-family: var(--font-montserrat), sans-serif;
     background-color: var(--color-blue-800);
+    background-image:
+    linear-gradient(
+      135deg,
+      #134879 75%,
+      #1B66AC 95%,
+      #2385DF 100%
+    ),
+    linear-gradient(
+      225deg,
+      #134879 75%,
+      #1B66AC 95%,
+      #2385DF 100%
+    );
+    background-blend-mode: lighten;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: var(--foreground);
   }
 
@@ -116,4 +161,70 @@
 }
 .desktop-margin {
   margin: var(--desktop-margin);
+}
+
+
+/* for docx designs */
+.docx-render-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.docx-render-container .page {
+  width: 297mm;
+  height: 210mm;
+  margin: 10px auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* scroll in desktop view */
+@media (min-width: 1024px) {
+  .docx-render-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+/* scrool in tablet view */
+@media (max-width: 1023px) {
+  .docx-render-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .docx-render-container .page {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    margin: 0 20px 0 0;
+  }
+}
+
+/* to scroll sa mobile view */
+@media (max-width: 768px) {
+  .docx-render-container {
+    padding: 10px;
+  }
+  
+  .docx-render-container .page {
+    margin: 0 10px 0 0;
+  }
+}
+
+
+.rdrDefinedRangesWrapper {
+  display: none !important;
+}
+
+.rdrCalendarWrapper {
+  @apply bg-white rounded-lg;
+}
+.rdrDayHovered .rdrDayNumber {
+  @apply bg-blue-100 text-blue-950;
 }

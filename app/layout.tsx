@@ -1,6 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { Buffer } from "buffer";
+
+if (typeof window !== "undefined") {
+  (window as any).Buffer = Buffer;
+}
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -9,10 +14,10 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "DLP Generator",
+  title: "DLL Generator",
   description: "Generate lesson plans with ease",
   icons: {
-    icon: "/logo.png",
+    icon: "/logo.ico",
   },
 };
 
