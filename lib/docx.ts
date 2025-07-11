@@ -5,29 +5,29 @@ export async function generateFilledDocx(
   cloudUrl: string,
   data: Record<string, string>
 ): Promise<Blob> {
-  const res = await fetch(cloudUrl);
-  const content = await res.arrayBuffer();
-  const zip = new PizZip(content);
-
-  const doc = new Docxtemplater(zip, {
-    delimiters: { start: '{{', end: '}}' },
-    paragraphLoop: true,
-    linebreaks: true,
-  });
-
-  doc.setData(data);
-  
   try {
-    doc.render();
-  } catch (error) {
-    console.error("Error rendering document:", error);
-    throw new Error("Failed to render document template");
-  }
+    const res = await fetch(cloudUrl);
+    if (!res.ok) throw new Error(`Failed to fetch template: ${res.statusText}`);
+    
+    const content = await res.arrayBuffer();
+    const zip = new PizZip(content);
 
-  const out = doc.getZip().generate({
-    type: 'blob',
-    mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-  });
-  
-  return out;
+    const doc = new Docxtemplater(zip, {
+      delimiters: { start: '{{', end: '}}' },
+      paragraphLoop: true,
+      linebreaks: true,
+    });
+
+    doc.setData(data);
+    doc.render();
+
+    return doc.getZip().generate({
+      type: 'blob',
+      mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      compression: 'DEFLATE'
+    });
+  } catch (error) {
+    console.error("Error processing document:", error);
+    throw new Error("Failed to process document template");
+  }
 }
