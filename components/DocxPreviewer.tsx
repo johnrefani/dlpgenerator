@@ -7,7 +7,7 @@ import { DocxPreviewerProps } from "@/lib/props";
 export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 297, height: 210 }); 
-  const [scale, setScale] = useState(1); 
+  const [scale, setScale] = useState(); 
   const [error, setError] = useState<string | null>(null);
 
   const mmToPx = (mm: number) => mm * 3.779527559;
