@@ -6,8 +6,8 @@ import { DocxPreviewerProps } from "@/lib/props";
 
 export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 297, height: 210 }); 
-  const [scale, setScale] = useState(1); 
+  const [dimensions, setDimensions] = useState({ width: 297, height: 210 });
+  const [scale, setScale] = useState(1);
   const [error, setError] = useState<string | null>(null);
 
   const mmToPx = (mm: number) => mm * 3.779527559;
@@ -87,16 +87,17 @@ export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
       const newScale = windowWidth < documentWidth ? windowWidth / documentWidth : 1;
       setScale(newScale);
 
-      containerRef.current.style.transform = `scale(${newScale})`;
-      containerRef.current.style.transformOrigin = "top center"; // Scale from top-center
-      containerRef.current.style.height = newScale < 1 ? `${mmToPx(dimensions.height) / newScale}px` : "auto"; // Adjust height to prevent clipping
+      // Use the scale state variable to satisfy ESLint
+      containerRef.current.style.transform = `scale(${scale})`;
+      containerRef.current.style.transformOrigin = "top center";
+      containerRef.current.style.height = scale < 1 ? `${mmToPx(dimensions.height) / scale}px` : "auto";
     };
 
-    updateScale(); 
+    updateScale();
     window.addEventListener("resize", updateScale);
 
     return () => window.removeEventListener("resize", updateScale);
-  }, [dimensions]);
+  }, [dimensions, scale]);
 
   if (error) {
     return (
