@@ -1,26 +1,23 @@
 "use client"
 
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState } from "react";
 import { renderAsync } from "docx-preview";
 import { DocxPreviewerProps } from "@/lib/props";
 
 export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 297, height: 210 });
-  const [scale, setScale] = useState(1); // Initialize scale
+  const [scale, setScale] = useState(1);
   const [error, setError] = useState<string | null>(null);
 
-  const mmToPx = useCallback((mm: number) => mm * 3.779527559, []); // Memoize mmToPx
+  const mmToPx = (mm: number) => mm * 3.779527559;
 
   useEffect(() => {
     async function render() {
       if (!containerRef.current) return;
 
       try {
-        // Clear container safely
-        while (containerRef.current.firstChild) {
-          containerRef.current.removeChild(containerRef.current.firstChild);
-        }
+        containerRef.current.innerHTML = "";
 
         await renderAsync(blob, containerRef.current, undefined, {
           ignoreWidth: false,
@@ -41,7 +38,7 @@ export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
         });
 
         const firstPage = containerRef.current.querySelector(".page");
-        if (firstPage instanceof HTMLElement) {
+        if (firstPage) {
           const computedStyle = window.getComputedStyle(firstPage);
           setDimensions({
             width: parseFloat(computedStyle.width),
@@ -51,33 +48,30 @@ export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
 
         const pages = containerRef.current.querySelectorAll(".page");
         pages.forEach((page) => {
-          if (page instanceof HTMLElement) {
-            page.style.width = `${dimensions.width}px`;
-            page.style.height = `${dimensions.height}px`;
-            page.style.margin = "0 auto";
-            page.style.padding = "0";
-            page.style.boxShadow = "0 0 10px rgba(0,0,0,0.1)";
-            page.style.overflow = "hidden";
-            page.style.backgroundColor = "white";
-            page.style.position = "relative";
-          }
+          const pageElement = page as HTMLElement;
+          pageElement.style.width = `${dimensions.width}px`;
+          pageElement.style.height = `${dimensions.height}px`;
+          pageElement.style.margin = "0 auto";
+          pageElement.style.padding = "0";
+          pageElement.style.boxShadow = "0 0 10px rgba(0,0,0,0.1)";
+          pageElement.style.overflow = "hidden";
+          pageElement.style.backgroundColor = "white";
+          pageElement.style.position = "relative";
         });
 
-        if (containerRef.current) {
-          containerRef.current.style.width = "100%";
-          containerRef.current.style.maxWidth = `${dimensions.width}px`;
-          containerRef.current.style.margin = "0 auto";
-          containerRef.current.style.padding = "20px 0";
-          containerRef.current.style.backgroundColor = "#f5f5f5";
-        }
+        containerRef.current.style.width = "100%";
+        containerRef.current.style.maxWidth = `${dimensions.width}px`;
+        containerRef.current.style.margin = "0 auto";
+        containerRef.current.style.padding = "20px 0";
+        containerRef.current.style.backgroundColor = "#f5f5f5";
 
-      } catch (err: unknown) {
+      } catch (err) {
         console.error("Rendering error:", err);
         setError("Failed to render document preview");
       }
     }
 
-    render().catch((err: unknown) => {
+    render().catch((err) => {
       console.error("Render error:", err);
       setError("Failed to render document");
     });
@@ -93,16 +87,17 @@ export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
       const newScale = windowWidth < documentWidth ? windowWidth / documentWidth : 1;
       setScale(newScale);
 
-      containerRef.current.style.transform = `scale(${newScale})`;
+      // Use the scale state variable to satisfy ESLint
+      containerRef.current.style.transform = `scale(${scale})`;
       containerRef.current.style.transformOrigin = "top center";
-      containerRef.current.style.height = newScale < 1 ? `${mmToPx(dimensions.height) / newScale}px` : "auto";
+      containerRef.current.style.height = scale < 1 ? `${mmToPx(dimensions.height) / scale}px` : "auto";
     };
 
     updateScale();
     window.addEventListener("resize", updateScale);
 
     return () => window.removeEventListener("resize", updateScale);
-  }, [dimensions, mmToPx]); // Add mmToPx to dependencies
+  }, [dimensions, scale]);
 
   if (error) {
     return (
