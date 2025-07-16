@@ -163,61 +163,6 @@
   margin: var(--desktop-margin);
 }
 
-
-/* for docx designs */
-.docx-render-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.docx-render-container .page {
-  width: 297mm;
-  height: 210mm;
-  margin: 10px auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-/* scroll in desktop view */
-@media (min-width: 1024px) {
-  .docx-render-container {
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-}
-
-/* scrool in tablet view */
-@media (max-width: 1023px) {
-  .docx-render-container {
-    overflow-x: auto;
-    overflow-y: hidden;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 20px;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-  }
-  
-  .docx-render-container .page {
-    scroll-snap-align: start;
-    flex: 0 0 auto;
-    margin: 0 20px 0 0;
-  }
-}
-
-/* to scroll sa mobile view */
-@media (max-width: 768px) {
-  .docx-render-container {
-    padding: 10px;
-  }
-  
-  .docx-render-container .page {
-    margin: 0 10px 0 0;
-  }
-}
-
-
 .rdrDefinedRangesWrapper {
   display: none !important;
 }
@@ -227,4 +172,26 @@
 }
 .rdrDayHovered .rdrDayNumber {
   @apply bg-blue-100 text-blue-950;
+}
+
+
+.docx-wrapper {
+  background-color: var(--color-blue-950) !important;
+}
+.docx-render-container {
+  display: flex;
+  justify-content: center;
+  background-color: transparent !important;
+}
+
+.docx page {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+  margin: 20px auto !important;
+  
+}
+
+.docx * {
+  font-family: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
 }
