@@ -175,23 +175,38 @@
 }
 
 
-.docx-wrapper {
-  background-color: var(--color-blue-950) !important;
-}
 .docx-render-container {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   background-color: transparent !important;
+  width: 100%;
+  overflow: hidden;
+}
+
+.docx-wrapper {
+  background-color: #fff !important; /* White background for document */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
 }
 
 .docx page {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
-  margin: 20px auto !important;
-  
+  box-shadow: none !important;
+  margin: 10px auto !important;
 }
 
 .docx * {
   font-family: inherit !important;
   line-height: inherit !important;
   letter-spacing: inherit !important;
+}
+
+.docx {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .docx-render-container {
+    padding: 10px;
+  }
 }
