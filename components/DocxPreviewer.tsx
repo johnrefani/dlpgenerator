@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useRef, useEffect, useState } from "react";
 import { renderAsync } from "docx-preview";
@@ -6,7 +6,7 @@ import { DocxPreviewerProps } from "@/lib/props";
 
 export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1); 
+  const [scale, setScale] = useState(1);
   const [error, setError] = useState<string | null>(null);
 
   const mmToPx = (mm: number) => mm * 3.779527559;
@@ -55,15 +55,24 @@ export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
           debug: false,
         });
 
-        containerRef.current.style.width = `${mmToPx(297)}px`; 
+        const naturalHeight = containerRef.current.scrollHeight;
+        const bottomMargin = 50;
+        const scaledHeight = (naturalHeight + bottomMargin) * scale;
+
+        containerRef.current.style.width = `${mmToPx(297)}px`;
         containerRef.current.style.maxWidth = "none";
-        containerRef.current.style.margin = "0 auto";
+        containerRef.current.style.margin = "0 auto 20px";
         containerRef.current.style.padding = "20px 0";
         containerRef.current.style.backgroundColor = "#f5f5f5";
         containerRef.current.style.transform = `scale(${scale})`;
         containerRef.current.style.transformOrigin = "top center";
         containerRef.current.style.overflow = "visible";
 
+        const parentContainer = containerRef.current.parentElement;
+        if (parentContainer) {
+          parentContainer.style.height = `${scaledHeight + 40}px`;
+          parentContainer.style.minHeight = "auto";
+        }
       } catch (err) {
         console.error("Rendering error:", err);
         setError("Failed to render document preview");
@@ -89,7 +98,6 @@ export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
       className="docx-render-container w-full flex justify-center overflow-hidden"
       style={{
         background: "#f5f5f5",
-        minHeight: "100vh",
         overflow: "hidden",
       }}
     >
@@ -97,8 +105,6 @@ export default function DocxPreviewer({ blob }: DocxPreviewerProps) {
         ref={containerRef}
         className="docx-wrapper"
         style={{
-          transform: `scale(${scale})`,
-          transformOrigin: "top center",
           width: `${mmToPx(297)}px`,
         }}
       />
