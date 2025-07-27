@@ -15,9 +15,9 @@ const Button = ({
     target={target}
     onClick={onClick}
     className={`inline-flex items-center gap-2 
-    bg-blue-400 text-white text-base font-semibold 
+    bg-red-900 text-white text-base font-semibold 
     px-8 py-3 rounded-lg
-    transition hover:bg-blue-500 ${className}`}
+    transition hover:bg-red-500 ${className}`}
     rel={target === "_blank" ? "noopener noreferrer" : undefined}
   >
     <span>{title}</span>
