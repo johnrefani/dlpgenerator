@@ -147,11 +147,11 @@ const InfoForm = () => {
       <div className="flex space-x-2 justify-center">
         <Image src="/logo.png" alt="logo" height={80} width={80} />
         <h1 className="text-base font-bold text-blue-950">
-          MATATAG
+          Polytechnic University of the Philippines
           <br />
-          <span>K-12 Curriculum</span>
+          <span>Lesson Plan Generator anchored to DepEd</span>
           <br />
-          <span>Lingguhan Aralin</span>
+          <span>MATATAG  CURRICULUM Lingguhang Aralin</span>
         </h1>
       </div>
       <div>

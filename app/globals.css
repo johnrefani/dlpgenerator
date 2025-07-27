@@ -54,20 +54,7 @@
   }
   body {
     font-family: var(--font-montserrat), sans-serif;
-    background-color: var(--color-blue-800);
-    background-image:
-    linear-gradient(
-      135deg,
-      #134879 75%,
-      #1B66AC 95%,
-      #2385DF 100%
-    ),
-    linear-gradient(
-      225deg,
-      #134879 75%,
-      #1B66AC 95%,
-      #2385DF 100%
-    );
+    background-color: var(--color-red-950);
     background-blend-mode: lighten;
     background-repeat: no-repeat;
     background-size: cover;
