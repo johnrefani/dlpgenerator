@@ -1,5 +1,7 @@
 import { DLLData } from "@/lib/props";
 
+//Document Data
+// When adding new data be sure also to add in the "Options for the markahan combobox" below
 export const dllData: DLLData[] = [
   {
     code: "Q1_W1",
@@ -7,149 +9,151 @@ export const dllData: DLLData[] = [
     asignatura: "GMRC",
     markahan: "Unang Markahan",
     dllLink:
-      "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752659961/DLL_MATATAG__GMRC_4_Q1_W1_tlq7sj.docx",
+      "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695554/DLL_MATATAG__GMRC_4_Q1_W1_dccmru.docx",
   },{
    code: "Q1_W2",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Unang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752659959/DLL_MATATAG__GMRC_4_Q1_W2_mhwgre.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695554/DLL_MATATAG__GMRC_4_Q1_W2_bdtfsn.docx",
   },{
     code: "Q1_W3",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Unang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752659959/DLL_MATATAG__GMRC_4_Q1_W3_iuwyj7.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695554/DLL_MATATAG__GMRC_4_Q1_W3_kgxbv9.docx",
   },{
     code: "Q1_W4",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Unang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752659959/DLL_MATATAG__GMRC_4_Q1_W4_zgrxp2.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695554/DLL_MATATAG__GMRC_4_Q1_W4_xrkacd.docx",
   },{
     code: "Q1_W5",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Unang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752659959/DLL_MATATAG__GMR_4_Q1_W5_ky4ezu.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695554/DLL_MATATAG__GMR_4_Q1_W5_s2miqs.docx",
   },{
     code: "Q1_W6",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Unang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752659959/DLL_MATATAG__GMRC_4_Q1_W6_ubf8ru.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695554/DLL_MATATAG__GMRC_4_Q1_W6_qzpezu.docx",
   },{
     code: "Q2_W1",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikalawang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660018/DLL_MATATAG__GMRC_4_Q2W1_swcvdl.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695555/DLL_MATATAG__GMRC_4_Q2W1_sia7ao.docx",
   },{
     code: "Q2_W2",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikalawang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660017/DLL_MATATAG__GMRC_4_Q2W2_os3xpf.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695555/DLL_MATATAG__GMRC_4_Q2W2_toxqa9.docx",
   },{
     code: "Q2_W3",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikalawang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660015/DLL_MATATAG__GMRC_4_Q2W3_vcnvrs.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695556/DLL_MATATAG__GMRC_4_Q2W3_hcbjck.docx",
   },{
     code: "Q2_W4",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikalawang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660014/DLL_MATATAG__GMRC_4_Q2W4_moyqvz.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695556/DLL_MATATAG__GMRC_4_Q2W4_kfnjtn.docx",
   },{
     code: "Q2_W5",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikalawang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660014/DLL_MATATAG__GMRC_4_Q2W5_ihzqzt.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695557/DLL_MATATAG__GMRC_4_Q2W5_fvtj7g.docx",
   },{
     code: "Q2_W6",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikalawang Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660013/DLL_MATATAG__GMRC_4_Q2W6_zxv3xl.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695557/DLL_MATATAG__GMRC_4_Q2W6_jvswuv.docx",
   },{
     code: "Q3_W1",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikatlong Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660112/DLL_MATATAG__GMRC_4_Q3_W1_bqzqop.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695558/DLL_MATATAG__GMRC_4_Q3_W1_datfgq.docx",
   },{
     code: "Q3_W2",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikatlong Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660110/DLL_MATATAG__GMRC_4_Q3_W2_jg0al1.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695558/DLL_MATATAG__GMRC_4_Q3_W2_gcr7fz.docx",
   },{
     code: "Q3_W3",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikatlong Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660114/DLL_MATATAG__GMRC_4_Q3_W3_efs1yd.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695559/DLL_MATATAG__GMRC_4_Q3_W3_vkpohk.docx",
   },{
     code: "Q3_W4",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikatlong Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660107/DLL_MATATAG__GMRC_4_Q3_W4_hihzcw.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695559/DLL_MATATAG__GMRC_4_Q3_W4_aj49b8.docx",
   },{
     code: "Q3_W5",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikatlong Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660108/DLL_MATATAG__GMRC_4_Q3_W5_aar8xq.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695560/DLL_MATATAG__GMRC_4_Q3_W5_ggenz3.docx",
   },{
     code: "Q3_W6",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ikatlong Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660114/DLL_MATATAG__GMRC_4_Q3_W6_dofzj7.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695560/DLL_MATATAG__GMRC_4_Q3_W6_lwvgfq.docx",
   },{
     code: "Q4_W1",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ika-apat na Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660149/DLL_MATATAG__GMRC_4_Q4_W1_dh73ul.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695560/DLL_MATATAG__GMRC_4_Q4_W1_jmhuz1.docx",
   },{
     code: "Q4_W2",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ika-apat na Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660158/DLL_MATATAG__GMRC_4_Q4_W2_e4ypjo.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695561/DLL_MATATAG__GMRC_4_Q4_W2_r7hzr5.docx",
   },{
     code: "Q4_W3",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ika-apat na Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660153/DLL_MATATAG__GMRC_4_Q4_W3_vy56kl.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695562/DLL_MATATAG__GMRC_4_Q4_W3_u8vwvj.docx",
   },{
     code: "Q4_W4",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ika-apat na Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660151/DLL_MATATAG__GMRC_4_Q4_W4_eaqpxq.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695562/DLL_MATATAG__GMRC_4_Q4_W4_djbaku.docx",
   },{
     code: "Q4_W5",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ika-apat na Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660155/DLL_MATATAG__GMRC_4_Q4_W5_xjykbc.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695562/DLL_MATATAG__GMRC_4_Q4_W5_kwyger.docx",
   },{
     code: "Q4_W6",
     baitang: "4",
     asignatura: "GMRC",
     markahan: "Ika-apat na Markahan",
-    dllLink: "https://res.cloudinary.com/dw3zuv8pb/raw/upload/v1752660148/DLL_MATATAG__GMRC_4_Q4_W6_qufhxk.docx",
+    dllLink: "https://res.cloudinary.com/dbpgvt3gr/raw/upload/v1753695563/DLL_MATATAG__GMRC_4_Q4_W6_suqtfg.docx",
   }
 ];
 
-  // Options for the markahan combobox
+  // Options for the markahan combobox 
+  // value is the code of the document which is set in document data
+  // label is what will be displayed in selecting markahan at linggo
 export const markahanOptions = [
     { value: 'Q1_W1', label: 'Quarter 1 - Week 1' },
     { value: 'Q1_W2', label: 'Quarter 1 - Week 2' },
