@@ -144,8 +144,8 @@ const InfoForm = () => {
 
   return (
     <div className="bg-white rounded-lg p-6 lg:p-8 max-w-[750px] space-y-6 lg:space-y-8">
-      <div className="flex space-x-2 justify-center">
-        <Image src="/logo.png" alt="logo" height={80} width={80} />
+      <div className="flex-1 md:flex space-x-2 justify-center place-items-center text-center md:text-start">
+        <Image src="/logo.png" alt="logo" height={80} width={80} className='mb-2 md:mb-0'/>
         <h1 className="text-base font-bold text-blue-950">
           Polytechnic University of the Philippines
           <br />
